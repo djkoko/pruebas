@@ -1,0 +1,156 @@
+credito=30000
+
+#minimo de 3 creditos y maximo de 14 creditos
+
+extranjero=1.23
+
+beca_excelencia=0.70
+
+beca_social=0.75
+
+#puede tener 1 o 2 becas
+
+bienestar_social=5000
+
+
+
+
+print("Programa De Matriculacion de Asignaturas de la universidad\n")
+
+
+while True:
+	try:
+		numero_creditos=int(input("Gestion de Creditos: Introduzca el Numero de Creditos que desea Matricularse: "))
+
+		if numero_creditos<3 or numero_creditos>15:
+
+			print("Lo Siento El numero de creditos Permitidos son Minimo 3 y Maximos 14")
+
+
+		else:
+			print(numero_creditos)
+
+			precio_credito=numero_creditos*credito	
+			break	
+
+
+	except:
+		print("Solo se permiten Numeros, Gracias")		
+
+
+		
+
+print("GESTION DE BECAS:\n ")
+
+while True:
+
+	derecho_beca=input("Tienes Derecho a beca?: Si - No: ")
+	derecho_beca=derecho_beca.capitalize()
+
+
+	if derecho_beca=="Si" or derecho_beca=="No":
+
+		if derecho_beca=="Si":
+
+			while True:
+
+				try:
+
+					tipo_beca=int(input("Que beca te pertenece? \n Responde con el numero indicado \n 1.-Excedencia Academica - 2.-Socio Economica - 3.-Ambas: "))
+
+			
+
+					if tipo_beca==1:
+
+						descuento=precio_credito*beca_excelencia
+						break
+
+					elif tipo_beca==2:
+	
+						descuento=precio_credito*beca_social
+						break
+
+					else:
+	
+						descuento1=precio_credito*beca_social
+						descuento2=precio_credito*beca_excelencia+descuento1
+						descuento=descuento2-precio_credito	
+						break;
+
+
+				except ValueError:
+
+					print("Solo se Permite valores numericos ")	
+			break;	#Este break rompe el primer loop sino se hace un bucle infinito al tener 2 whiles =)			
+
+		else:
+
+			print("Vale Lo entiendo , Lo siento por no tener beca no importa")
+			break
+
+	else:
+		print("Las respuestas posibles solo son Si o No , Gracias")		
+
+
+while True:
+	eres_extranjero=input("Ultima Pregunta: \nEres extranjero? Si - No: ")
+	eres_extranjero=eres_extranjero.capitalize()
+
+	if eres_extranjero=="Si" or eres_extranjero=="No":
+
+		if eres_extranjero=="Si":
+
+			print("Recordarle que por ser Extranjero tienes que pagar una tasa\n")
+			beca_extranjero=descuento*extranjero
+			break
+
+		else:
+
+			print("Al ser de la Tierra No tiene que pagar una tasa extra =)\n")
+			break
+
+	else:
+		print("Lo Siento Solo se admite Si o No")		
+
+
+print("--------------------------------TOTAL A PAGAR--------------------------------- \n")	
+
+print("El Numero de Creditos Seleccionados son: ", numero_creditos, "El Precio del Credito en Esta universidad es de 30000 colones, el Total seria: ",precio_credito)
+
+print("Descuentos por beca:	")
+
+if derecho_beca=="Si":
+
+	print("Por la beca ",tipo_beca," el descuento en el precio seria de:",descuento)
+
+	print("Impuesto por Estudiante extranjero: ")
+
+	if eres_extranjero=="Si":
+
+		print("La taxa por ser extranjero es del 23% y el precio seria ya con descuentos en el caso de que tubieras descuentos y numero de creditos:", beca_extranjero)
+
+		print("El impuesto por matriculacion es de: ",bienestar_social,"\nY el Total seria:", beca_extranjero+bienestar_social)
+
+
+	else:
+
+		print("Al ser de la tierra no tiene que pagar una taxa extra y el precio seria el mismo: ",descuento)
+		print("El impuesto por matriculacion es de: ",bienestar_social,"\nY El TOTAL seria: ",bienestar_social+descuento)
+
+
+else:
+
+	print("Por no Tener beca No se hace ningun descuento")
+
+	if eres_extranjero=="Si":
+
+		print("La taxa por ser extranjero es del 23% y el precio seria ya con descuentos en el caso de que tubieras descuentos y numero de creditos:", beca_extranjero)
+		print("El impuesto por matriculacion es de: ",bienestar_social,"\nY el Total seria:", beca_extranjero+bienestar_social)
+
+
+	else:
+
+		print("Al ser de la tierra no tiene que pagar una taxa extra y el precio seria el mismo: ",descuento)
+		print("El impuesto por matriculacion es de: ",bienestar_social,"\nY el Total seria:", descuento+bienestar_social)
+
+
